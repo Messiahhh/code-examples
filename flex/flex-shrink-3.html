@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            body {
+                margin: 0;
+            }
+
+            .outer {
+                width: 300px;
+                height: 400px;
+                margin: 0 auto;
+
+                display: flex;
+            }
+
+            .a {
+                flex-basis: 200px;
+                background: pink;
+                flex-shrink: 1;
+            }
+
+            .c {
+                flex-basis: 150px;
+                background: yellow;
+                flex-shrink: 2;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="outer">
+            <div class="a">
+
+            </div>
+            <div class="c">
+
+            </div>
+        </div>
+        <h1>
+            (200 - x) / 200 : (150 - y) / 150 = 1 : 2
+            x + y = 300
+        </h1>
+    </body>
+</html>

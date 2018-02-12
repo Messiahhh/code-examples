@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <input type="text" class='text'>
+        <button type="button" name="button" class='button-text'>提交</button>
+        <input type="file" class='file'>
+        <script type="text/javascript">
+
+        let button = document.querySelector('.button-text')
+        let input = document.querySelector('.text')
+        let f = document.querySelector('.file')
+
+        button.addEventListener('click', async function () {
+            let val = input.value
+            let file = f.files[0]
+            let fd = new FormData()
+            let blob = new Blob([val])
+
+            // await axios({
+            //     method: 'post',
+            //     url: '/submit',
+            //     data: val
+            // })
+
+            // fd.append('val', val)
+            // await axios({
+            //     method: 'post',
+            //     url: '/submit',
+            //     data: fd
+            // })
+
+            // await axios({
+            //     method: 'post',
+            //     url: '/submit',
+            //     data: blob
+            // })
+
+            // await axios({
+            //     method: 'post',
+            //     url: '/submit',
+            //     data: file
+            // })
+
+            fd.append('file', blob)
+            // await axios({
+            //     method: 'post',
+            //     url: '/submit',
+            //     data: fd
+            // })
+
+            let reader = new FileReader()
+            // console.log(file)
+            reader.onload = async function () {
+                console.log(file)
+                await axios({
+                    method: 'post',
+                    url: '/submit',
+                    data: fd
+                })
+            }
+            reader.readAsArrayBuffer(blob)
+            //  file ！== filereader
+
+        })
+        // var a
+        // var blob = new Blob(["Hello World"]);
+        // var href = window.URL.createObjectURL(blob);
+        // console.log(href)
+        //
+        // var reader = new FileReader()
+        // reader.onload = function () {
+        //     // console.log(`dataURI: ${reader.result}`)
+        //     console.log(reader.result)
+        //     a = reader.result
+        // }
+        // reader.readAsArrayBuffer(blob)
+        </script>
+    </body>
+</html>
