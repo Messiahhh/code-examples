@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+<div id="app">
+    <test></test>
+</div>
+
+<script type="text/javascript">
+    Vue.component('test', {
+        template: '<h1>{{message}}</h1>',
+        data() {
+            return {
+                message : "component"
+            }
+        },
+        beforeCreate() {
+          console.log('a-1')
+        },
+        created() {
+          console.log('a-2')
+        },
+        beforeMount() {
+          console.log('a-3')
+        },
+        mounted: function () {
+           console.log('a-4');
+        },
+
+    })
+  var app = new Vue({
+      el: '#app',
+      beforeCreate() {
+        console.log('b-1')
+      },
+      created() {
+        console.log('b-2')
+      },
+      beforeMount() {
+        console.log('b-3')
+      },
+      mounted: function () {
+         console.log('b-4')
+      },
+      // template: '<p>template</p>',
+      // render(h) {
+      //     return h(
+      //         'h1',
+      //         'render'
+      //     )
+      // }
+
+    })
+</script>
+</body>
+</html>

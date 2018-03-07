@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            body {
+                --test: red;
+            }
+
+            p {
+                color: var(--test);
+            }
+        </style>
+    </head>
+    <body>
+        <p class='test'>111</p>
+        <script type="text/javascript">
+            let test = document.querySelector('.test').style.setProperty('--test', 'blue')
+        </script>
+    </body>
+</html>
