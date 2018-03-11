@@ -25,18 +25,26 @@
                 padding: 50px;
                 border: 20px solid green;
                 overflow: auto;
+                position: relative;
             }
             .inner {
-                width: 240px;
-                height: 240px;
+                width: 400px;
+                height: 400px;
                 background: pink;
+            }
+
+            .absolute {
+                width: 20px;
+                height: 20px;
+                background: red;
+                position: absolute;
+                top: 0;
             }
             .inline {
                 display: inline-block;
                 width: 40px;
                 height: 40px;
             }
-
             .inline1 {
                 background: red;
             }
@@ -47,13 +55,16 @@
     </head>
     <body>
         <div class="test">
-
+123
         </div>
         <div class="test2">
 
         </div>
         <div class="test3">
             <div class="inner">
+
+            </div>
+            <div class="absolute">
 
             </div>
         </div>
@@ -65,5 +76,9 @@
         <div class="inline inline2">
 
         </div>
+        <script type="text/javascript">
+            let outer = document.querySelector('.test3')
+            let inner = document.querySelector('.inner')
+        </script>
     </body>
 </html>

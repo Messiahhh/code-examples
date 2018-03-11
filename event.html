@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+        body {
+            margin: 0;
+        }
+            .outer {
+                height: 800px;
+                margin: 0 auto;
+                background: pink;
+                padding-top: 120px;
+            }
+
+            .inner {
+                width: 200px;
+                height: 200px;
+                margin: 80px auto;
+                background: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="outer">
+            <div class="inner">
+
+            </div>
+        </div>
+
+        <h1>需求分析:</h1>
+        <h2>现在的情况是弹出框，我想点击弹出框外面的地方使弹出框消失，可以给document增加事件。
+            不过这样的话当我点击弹出框的时候也会触发消失事件，which是我不想要的功能。弹出框内一般要放一些按钮。
+        </h2>
+        <script type="text/javascript">
+
+
+            let inner = document.querySelector('.inner')
+            let outer = document.querySelector('.outer')
+
+            inner.addEventListener('click', function (e) {
+                e.stopPropagation()
+            }, false)
+
+
+
+            outer.addEventListener('click', function (e) {
+                inner.style.display = 'none'
+            }, false)
+
+
+        </script>
+    </body>
+</html>
