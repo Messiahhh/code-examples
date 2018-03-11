@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="./vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+</div>
+
+<script type="text/javascript">
+Vue.component('t', {
+    template: '<h2>t</h2>',
+    beforeMount() {
+        console.log(this.$el);
+    },
+    mounted() {
+        console.log(this.$el);
+    },
+
+})
+    Vue.component('test', {
+        template: '<h1>component<t></t></h1>',
+        beforeMount() {
+            console.log(this.$el);
+        },
+        mounted() {
+            console.log(this.$el);
+        },
+
+    })
+
+
+
+  var app = new Vue({
+      el: '#app',
+
+      beforeMount() {
+          a = this
+      },
+      mounted() {
+          b = this
+      },
+      template: `<div>
+          root
+          <test></test>
+      </div>`,
+
+    })
+
+
+</script>
+</body>
+</html>

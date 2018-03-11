@@ -25,10 +25,12 @@
           console.log('a-2')
         },
         beforeMount() {
+            console.log(this.$el);
           console.log('a-3')
         },
-        mounted: function () {
-           console.log('a-4');
+        mounted() {
+            console.log(this.$el);
+            console.log('a-4');
         },
 
     })
@@ -41,9 +43,19 @@
         console.log('b-2')
       },
       beforeMount() {
+          console.log(this.$el);
         console.log('b-3')
+        // this step the $el is
+        // <div>
+        //     <test></test>
+        // </div>
+        //
+        // so next step is transform test component
+        // by using new vue() implicitly
+        // 与显式相比，此时的el不用制定，而是组件名本身。
       },
-      mounted: function () {
+      mounted() {
+          console.log(this.$el);
          console.log('b-4')
       },
       // template: '<p>template</p>',
