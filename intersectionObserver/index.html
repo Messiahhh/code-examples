@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            .outer {
+                width: 600px;
+                height: 600px;
+                overflow: auto;
+                border: 1px solid red;
+            }
+            .a {
+                height: 800px;
+                background: pink;
+            }
+
+            .b {
+                height: 200px;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="outer">
+            <div class="a">
+
+            </div>
+            <div class="b" data-url="https://images7.alphacoders.com/896/thumb-1920-896573.png" >
+
+            </div>
+        </div>
+        <script type="text/javascript">
+            let io = new IntersectionObserver((entries) => {
+                entries.forEach((item) => {
+                    if (!item.isIntersecting) return
+                    else {
+                        let el = item.target
+                        el.style.backgroundImage = `url(${el.dataset.url})`
+                        io.unobserve(el)
+                    }
+                })
+            })
+            io.observe(document.querySelector('.b'))
+        </script>
+    </body>
+</html>
