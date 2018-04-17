@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title></title>
         <script src="./charming.min.js" charset="utf-8"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js" charset="utf-8"></script>
         <style media="screen">
             body {
                 margin: 0;
@@ -33,6 +34,10 @@
                 bottom: 40px;
                 font-size: 8vw;
             }
+
+            .word span {
+                display: inline-block;
+            }
         </style>
     </head>
     <body>
@@ -41,15 +46,18 @@
             <h2>Just a test</h2>
         </header>
         <section>
-            <div class='word'>hello</div>
+            <div class='word'>IIIIIII</div>
         </section>
         <section>
-            <div class="word">world</div>
+            <div class="word">Misssssss</div>
         </section>
         <section>
-            <div class="word">welcome</div>
+            <div class="word">Youuuuuu</div>
         </section>
         <script type="text/javascript">
+        const chars = ['$','%','#','@','&','(',')','=','*','/'];
+        const charsTotal = chars.length;
+        const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
             class Entry {
                 constructor(el) {
@@ -59,32 +67,70 @@
                     this.DOM.word = this.DOM.el.querySelector('.word')
                     charming(this.DOM.word)
                     this.DOM.letters = Array.from(this.DOM.word.querySelectorAll('span'))
+                    this.DOM.letters.forEach(letter => letter.dataset.initial = letter.innerHTML);
+                    this.lettersTotal = this.DOM.letters.length;
                     observe.observe(el)
                 }
 
                 enter() {
+                    this.DOM.word.style.opacity = 1
+                    anime({
+                        targets: this.DOM.letters,
+                        duration: 800,
+                        delay: (target,index) => index*200,
+                        easing: 'easeOutElastic',
+                        translateY: ['-100%', '0%'],
+                        opacity: {
+                            value: [0,1],
+                            duration: 3000,
+                            easing: 'linear'
+                        }
+                    })
+                    // this.timeouts = [];
+                    // this.complete = false;
+                    // let cnt = 0;
+                    // this.DOM.letters.forEach((letter, pos) => {
+                    //     const timeout = setTimeout(() => {
+                    //         letter.innerHTML = chars[getRandomInt(0,charsTotal-1)];
+                    //         let timeout = setTimeout(() => {
+                    //             letter.innerHTML = letter.dataset.initial;
+                    //             ++cnt;
+                    //             if ( cnt === this.lettersTotal ) {
+                    //                 this.complete = true;
+                    //             }
+                    //         }, 100);
+                    //     }, pos*80);
+                    //     this.timeouts.push(timeout);
+                    // })
+
 
                 }
 
                 leave() {
-
+                    this.DOM.word.style.opacity = 0
                 }
             }
 
-
+            let sections = Array.from(document.querySelectorAll('section'))
             let allentries = []
             let current = -1
 
             let observe = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
-                    if (entry.intersectionRatio > 0.5) {
-
+                    if (entry.intersectionRatio > 0.6) {
+                        let newcurrent = sections.indexOf(entry.target)
+                        if ( newcurrent === current ) return
+                        allentries[newcurrent].enter()
+                        if (current >= 0) {
+                            allentries[current].leave()
+                        }
+                        current = newcurrent
                     }
                 })
             }, {
-                threshold: [0.5]
+                threshold: [0.6]
             })
-            Array.from(document.querySelectorAll('section')).forEach((item) => {
+            sections.forEach((item) => {
                 allentries.push(new Entry(item))
             })
         </script>
