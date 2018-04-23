@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script type="text/javascript">
+        i = 0
+            window.requestAnimationFrame(function A() {
+                console.log(i++);
+                if (i > 200) {
+                    return
+                }
+                requestAnimationFrame(A)
+            })
+        </script>
+    </body>
+</html>

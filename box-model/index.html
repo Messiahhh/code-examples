@@ -79,6 +79,14 @@
         <script type="text/javascript">
             let outer = document.querySelector('.test3')
             let inner = document.querySelector('.inner')
+            outer.addEventListener('click', e => {
+                alert('test')
+            })
+            console.log(`outer.clientHeight: ${outer.clientHeight}`);
+            console.log(`outer.offsetHeight: ${outer.offsetHeight}`);
+            console.log(`outer.scrollHeight: ${outer.scrollHeight}`);
+            console.log(`outer.scrollTop = outer.scrollHeight - outer.clientHeight 滚动条底部`);
+            console.log(`outer.scrollTop = 0 滚动条顶部`);
         </script>
     </body>
 </html>

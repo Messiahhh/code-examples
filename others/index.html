@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+        .el {
+transition: height 0.5s;
+overflow: hidden;
+height: 0;
+}
+.trigger:hover > .el {
+height: var(--max-height);
+}
+        </style>
+    </head>
+    <body>
+        <div class="trigger">
+  Hover me to see a height transition.
+  <div class="el">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue placerat nunc a volutpat. Etiam placerat libero porttitor purus facilisis vehicula. Mauris risus mauris, varius ac consequat eget, iaculis non enim. Proin ut nunc ac massa iaculis sodales id mattis enim. Cras non diam ac quam pharetra fermentum vel ac nulla. Suspendisse ligula urna, porta non lobortis non, lobortis vel velit. Fusce lectus justo, aliquet eu fringilla auctor, sodales eu orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</div>
+</div>
+<script type="text/javascript">
+var el = document.querySelector('.el')
+var height = el.scrollHeight
+el.style.setProperty('--max-height', height + 'px')
+</script>
+    </body>
+</html>

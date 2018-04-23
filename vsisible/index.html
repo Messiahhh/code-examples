@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            .test {
+                height: 400px;
+                background: pink;
+                /* 不渲染，不触发事件 */
+                /* display: none; */
+                /* 渲染，仍然触发事件 */
+                /* opacity: 0; */
+                /* 渲染，不会触发事件 */
+                visibility: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="test">
+
+        </div>
+        <script type="text/javascript">
+            document.querySelector('.test').addEventListener('click', e => {
+                alert('test')
+            })
+        </script>
+    </body>
+</html>

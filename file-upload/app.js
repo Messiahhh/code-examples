@@ -3,7 +3,7 @@ const fs = require('fs')
 
 http.createServer(function (req, res) {
     if (req.url === '/') {
-        fs.readFile('./index.html', function (err, data) {
+        fs.readFile('./index2.html', function (err, data) {
             res.writeHead(200, {
                 'Content-Type': 'text/html'
             })
@@ -29,5 +29,3 @@ http.createServer(function (req, res) {
         })
     }
 }).listen(3000)
-let reader = new FileReader()
-console.log(reader)

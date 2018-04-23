@@ -36,7 +36,7 @@
             }
 
             .word span {
-                display: inline-block;
+                /* display: inline-block; */
             }
         </style>
     </head>
@@ -86,22 +86,22 @@
                             easing: 'linear'
                         }
                     })
-                    // this.timeouts = [];
-                    // this.complete = false;
-                    // let cnt = 0;
-                    // this.DOM.letters.forEach((letter, pos) => {
-                    //     const timeout = setTimeout(() => {
-                    //         letter.innerHTML = chars[getRandomInt(0,charsTotal-1)];
-                    //         let timeout = setTimeout(() => {
-                    //             letter.innerHTML = letter.dataset.initial;
-                    //             ++cnt;
-                    //             if ( cnt === this.lettersTotal ) {
-                    //                 this.complete = true;
-                    //             }
-                    //         }, 100);
-                    //     }, pos*80);
-                    //     this.timeouts.push(timeout);
-                    // })
+                    this.timeouts = [];
+                    this.complete = false;
+                    let cnt = 0;
+                    this.DOM.letters.forEach((letter, pos) => {
+                        const timeout = setTimeout(() => {
+                            letter.innerHTML = chars[getRandomInt(0,charsTotal-1)];
+                            let timeout = setTimeout(() => {
+                                letter.innerHTML = letter.dataset.initial;
+                                ++cnt;
+                                if ( cnt === this.lettersTotal ) {
+                                    this.complete = true;
+                                }
+                            }, 100);
+                        }, pos*80);
+                        this.timeouts.push(timeout);
+                    })
 
 
                 }
