@@ -4,20 +4,35 @@
         <meta charset="utf-8">
         <title></title>
         <style media="screen">
-        ul {
-        counter-reset: counter;
+                :root {
+          counter-reset: checked-sum, unchecked-sum;
         }
-        li::before {
-        counter-increment: counter;
-        content: counters(counter, '.') ' ';
+
+        input[type="checkbox"] {
+          counter-increment: unchecked-sum;
         }
+
+        input[type="checkbox"]:checked {
+          counter-increment: checked-sum;
+        }
+
+        .totalUnChecked::after {
+  content: counter(unchecked-sum);
+}
+
+.totalChecked::after {
+  content: counter(checked-sum);
+}
         </style>
     </head>
     <body>
-        <ul>
-          <li>List item</li>
-          <li>List item</li>
-          <li>List item</li>
-        </ul>
+        <input type="checkbox">Checkbox #1<br>
+<input type="checkbox">Checkbox #2
+<!-- more checkboxes, if we want them -->
+
+<div class="total">
+  <span class="totalChecked"> Total Checked: </span><br>
+  <span class="totalUnChecked"> Total Unchecked: </span>
+</div>
     </body>
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+        body {
+            margin: 0;
+        }
+            .test {
+                width: 100vw;
+                height: 100vh;
+                display: grid;
+                grid-template-columns: [f] repeat(3, 1fr) [last];
+                grid-template-rows: [a] 1fr [b] 2fr [c] 1fr [d];
+                background: grey;
+            }
+
+            .q {
+                grid-column: f / last;
+                grid-row: c / d;
+                background: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="test">
+            <div class="q">
+
+            </div>
+        </div>
+    </body>
+</html>
