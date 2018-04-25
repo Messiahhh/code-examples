@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+
+        </style>
+        <style media="screen">
+            .test {
+                height: 200px;
+                opacity: .3;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="test" style='color: red'>
+
+        </div>
+        <script type="text/javascript">
+            let el = document.querySelector('.test')
+
+            //el.style和window.getComputedStyle返回的都是CSSStyleDeclaration对象，
+            // 拥有setProperty和getPropertyValue方法。
+            //　但只有style里能修改属性，getComputedStyle里不可以修改，即不能调用setProperty
+
+
+
+            // console.log(el.style.setProperty('color', 'blue'));
+
+            // ie:　
+            // console.log(el.currentStyle.opacity);
+
+
+            //这里使用el.ownerDocument.defaultView，但其实直接用window.getComputedStyle更好
+            //可能只是为了解决某些问题吧，问题不大。
+            // const win = el.ownerDocument.defaultView;
+            // console.log(win.getComputedStyle(el, null).opacity);
+
+            //Old CSSOM，第二个参数是伪类，　
+            // console.log(window.getComputedStyle(el, null).setProperty('opacity', '0.5'));
+            // 获取到的是字符串而不是数字
+            // console.log(typeof window.getComputedStyle(el, null).opacity === 'string');
+
+            // document.styleSheets[0].cssRules[0].style.opacity = 0.8;
+
+
+
+
+            // !!! NEW CSS Typed Object Model
+            // only support chrome 66 right now
+
+            //行内样式
+            // el.attributeStyleMap.set('height', CSS.px(42));
+            // const padding = el.attributeStyleMap.get('height');
+            // console.log(padding.value, padding.unit); // 42, 'px'
+
+            //计算样式
+            // console.log(el.computedStyleMap().get('opacity').value);
+        </script>
+    </body>
+</html>

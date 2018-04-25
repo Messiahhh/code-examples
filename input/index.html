@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            input, textarea {
+                color: red;
+                -webkit-text-fill-color: transparent;
+                text-shadow: 0 0 0 #555;
+            }
+
+            input::-webkit-input-placeholder {
+                color: red;
+                -webkit-text-fill-color: red;
+                text-shadow: none;
+            }
+
+            .caret {
+                text-shadow: none;
+                -webkit-text-fill-color: red;
+                caret-color: blue !important;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="text" name="" value="" placeholder="你好啊">
+        <textarea name="name" rows="8" cols="80" ></textarea>
+        <input class='caret' type="text" name="" value="">
+    </body>
+</html>

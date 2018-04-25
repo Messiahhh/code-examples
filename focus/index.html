@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            :focus {
+                background: red;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="text" name="" value="" class='a'>
+        <input type="password" name="" value="" class='b'>
+        <button type="button" name="button" class='c'>test</button>
+        <a href="#">123</a>
+        <script type="text/javascript">
+            let a = document.querySelector('.a')
+            let b = document.querySelector('.b')
+            let c = document.querySelector('.c')
+            a.addEventListener('focus', e => {
+                console.log('focus')
+            })
+
+            a.addEventListener('blur', e => {
+                console.log('blur');
+            })
+
+
+            let e = new Event('focus')
+            a.dispatchEvent(e)
+        </script>
+    </body>
+</html>
