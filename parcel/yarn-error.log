@@ -1,0 +1,45 @@
+Arguments: 
+  /home/messiah/app/node/bin/node /home/messiah/app/node/bin/yarn add vue-template-compiler -D
+
+PATH: 
+  /home/messiah/app/node/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/home/messiah/code-examples/parcel/node_modules/.bin:/home/messiah/app/jdk/bin:/home/messiah/bin:/home/messiah/.local/bin://home/messiah/app/node/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  8.11.1
+
+Platform: 
+  linux x64
+
+npm manifest: 
+  {
+    "name": "parcel",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "parcel index.html"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "axios": "^0.18.0",
+      "vue": "^2.5.16"
+    },
+    "devDependencies": {
+      "parcel-bundler": "^1.8.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile '/home/messiah/.cache/yarn/v1/npm-kind-of-5.1.0-729c91e2d857b7a419a1f9aa65685c4c33f5845d/LICENSE' -> '/home/messiah/code-examples/parcel/node_modules/define-property/node_modules/kind-of/LICENSE'
