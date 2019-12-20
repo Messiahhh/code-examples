@@ -3,11 +3,12 @@
     <head>
         <meta charset="utf-8">
         <title></title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400|Playfair+Display:400,700">
         <style media="screen">
-        @import url('https://fonts.googleapis.com/css?family=Raleway');
+            @import url('https://fonts.googleapis.com/css?family=Raleway');
             body {
                 margin: 0;
-                font-family: 'Raleway', sans-serif;
+                font-family: 'Playfair Display', serif;
                 --image: url('https://pic3.zhimg.com/v2-843f31d94982214766a9957ded6e1c6e_xl.jpg');
             }
 
@@ -17,31 +18,23 @@
                 box-sizing: border-box;
             }
 
-
-            .loading::before {
-                content: '';
+            .loadingPage {
                 position: fixed;
-                width: 100%;
-                height: 100%;
-                left: 0;
+                width: 100vw;
+                height: 100vh;
                 top: 0;
+                left: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                background: #ece7de;
                 z-index: 100;
-                background: #5141d6;
             }
 
-            .loading::after {
-                content: '';
-                position: fixed;
-                width: 70px;
-                height: 70px;
-                border-radius: 50%;
-                border: 7px solid #4133b4;
-            	border-top-color: #fff;
-                top: 50%;
-                left: 50%;
-                z-index: 101;
-                margin: -35px 0 0 -35px;
-                animation: rotateLoader 0.8s linear infinite forwards;
+            .loadingPage .center {
+                color: #c04444;
+                font-size: 10vw;
             }
 
             @keyframes rotateLoader {
@@ -185,6 +178,11 @@
         </style>
     </head>
     <body class='loading'>
+        <section class='loadingPage'>
+            <div class="center">
+                Redrock
+            </div>
+        </section>
         <main class='container'>
             <section>
                 <h1>Profile</h1>

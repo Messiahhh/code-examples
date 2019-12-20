@@ -6,14 +6,16 @@
     </head>
     <body>
         <script type="text/javascript">
-        i = 0
-            window.requestAnimationFrame(function A() {
+            let i = 0
+            function A() {
                 console.log(i++);
                 if (i > 200) {
                     return
                 }
                 requestAnimationFrame(A)
-            })
+            }
+
+            requestAnimationFrame(A)
         </script>
     </body>
 </html>

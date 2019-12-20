@@ -10,26 +10,26 @@
         </style>
     </head>
     <body>
-        <div class="">
-
-        </div>
+        <input type="text" name="" value="">
         <script type="text/javascript">
-        // function _debounce(fn,wait){
-// var timer = null;
-// return function(){
-//     clearTimeout(timer)
-//     timer = setTimeout(()=>{
-//         fn()
-//     },wait)
-// }
-// }
-//
-function _log(){
-console.log(1)
-}
-// window.onscroll = _debounce(_log,500)
+            let el = document.querySelector('input')
+            el.addEventListener("input", debounce(A, 500))
 
-window.onscroll = _log
+            function debounce(fn, delay) {
+                let timer = null
+                return function () {
+                    let self = this
+                    let args = arguments
+                    timer && clearTimeout(timer)
+                    timer = setTimeout(function () {
+                        fn.apply(self, args)
+                    }, delay)
+                }
+            }
+
+            function A() {
+                console.log(this.value)
+            }
         </script>
     </body>
 </html>
