@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script type="text/javascript">
+
+
+        class Promise {
+            constructor(executor) {
+                this.status = "pending"
+                this.value = undefined
+                this.onResolvedCallback = []
+                this.onRejectedCallback = []
+
+                const resolve = (value) => {
+                    if (value instanceof Promise) {
+                        value.then((data) => {
+                            resolve(data)
+                        }, (reason) => {
+                            reject(reason)
+                        })
+                    }
+                    else {
+                        if (this.status === "pending") {
+                            this.status = "fulfilled"
+                            this.value = value
+                            this.onResolvedCallback.forEach(callback => {
+                                callback()
+                            })
+                        }
+                    }
+                }
+
+                const reject = (reason) => {
+                    if (this.status === "pending") {
+                        this.status = "rejected"
+                        this.value = reason
+                        this.onRejectedCallback.forEach(callback => {
+                            callback()
+                        })
+                    }
+                }
+
+                try {
+                    executor(resolve, reject)
+                } catch (e) {
+                    reject(e)
+                }
+
+            }
+
+            then(onResolve, onReject) {
+                let promise = new Promise((resolve, reject) => {
+                    if (this.status === "pending") {
+                        this.onResolvedCallback.push(() => {
+                            // setTimeout 模拟异步， 实际上then是放进微队列而setTimeout是放进宏队列
+                            setTimeout(() => {
+                                try {
+                                    resolve(onResolve(this.value))
+                                } catch (e) {
+                                    reject(e)
+                                }
+                            })
+                        })
+                        this.onRejectedCallback.push(() => {
+                            setTimeout(() => {
+                                try {
+                                    resolve(onReject(this.reason))
+                                } catch (e) {
+                                    reject(e)
+                                }
+                            })
+                        })
+                    }
+                    else if (this.status === "fulfilled") {
+                        setTimeout(() => {
+                            try {
+                                let x = onResolve(this.value)
+                                resolvePromise(promise, x, resolve, reject)
+                                // resolve(onResolve(this.value))
+                            } catch (e) {
+                                reject(e)
+                            }
+                        })
+                    }
+                    else if (this.status === "rejected") {
+                        setTimeout(() => {
+                            try {
+                                resolve(onReject(this.reason))
+                            } catch (e) {
+                                reject(e)
+                            }
+                        })
+                    }
+                })
+                return promise
+            }
+
+            catch(onReject) {
+                return this.then(null, onReject)
+            }
+
+            static all(promiseArr) {
+                return new Promise((resolve, reject) => {
+                    let res = []
+                    let length = promiseArr.length
+                    let count = 0
+                    promiseArr.forEach((promise, index) => {
+                        promise.then(value => {
+                            res[index] = value
+                            count++
+                            if (count === length) {
+                                resolve(res)
+                            }
+                        }, (reason) => {
+                            reject(reason)
+                        })
+                    })
+                })
+            }
+
+
+            static race(promiseArr) {
+                return new Promise((resolve, reject) => {
+                    promiseArr.forEach((promise) => {
+                        promise.then(value => {
+                            resolve(value)
+                        }, reason => {
+                            reject(reason)
+                        })
+                    })
+                })
+            }
+        }
+
+        function resolvePromise(promise, x, resolve, reject) {
+            if (x instanceof Promise) {
+                x.then((data) => {
+                    resolvePromise(promise, data, resolve, reject)
+                }, (reason) => {
+                    reject(x)
+                })
+            } else {
+                resolve(x)
+            }
+        }
+
+
+        let p1 = new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                console.log(1);
+                resolve(1)
+            }, 3000)
+        })
+        let p2 = new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                console.log(2);
+                resolve(2)
+            }, 2000)
+        })
+        let p3 = new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                console.log(3);
+                resolve(3)
+            }, 1000)
+        })
+
+        Promise.all([p1, p2, p3])
+        .then(console.log)
+        .catch(console.error)
+
+        // var a = Promise.race([p1, p2, p3])
+        //
+        // a.then(console.log)
+        // .catch(console.error)
+
+        // example
+        // let promise1 = new Promise((resolve) => {
+        //     resolve(1)
+        // })
+        //
+        // let promise2 = promise1.then((data) => {
+        //     return new Promise((r) => {
+        //         setTimeout(() => {
+        //             r(1000)
+        //         }, 400)
+        //     })
+        // })
+
+        </script>
+    </body>
+</html>

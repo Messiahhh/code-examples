@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var arr = [1, 2, [3, [4, 5]]]
+            let result = []
+
+            function fn(arr) {
+                arr.forEach(i => {
+                    if (Array.isArray(i)) fn(i)
+                    else {
+                        result.push(i)
+                    }
+                })
+            }
+
+            // function repeat(fn, times, wait) {
+            //     async function func(...args) {
+            //         for (let i = 0; i < times; i++) {
+            //             fn(...args)
+            //             await new Promise((resolve, reject) => {
+            //                 setTimeout(resolve, wait)
+            //             })
+            //         }
+            //     }
+            //     return func
+            // }
+
+            // function repeat(fn, times, wait) {
+            //     let timer
+            //     let count = 0
+            //     return function (...args) {
+            //         if (times > 0) {
+            //             fn(...args)
+            //         }
+            //         timer = setInterval(() => {
+            //             if (count < times - 1) {
+            //                 fn(...args)
+            //                 count++
+            //             }
+            //             else {
+            //                 clearInterval(timer)
+            //             }
+            //         }, wait)
+            //     }
+            // }
+
+        </script>
+    </body>
+</html>

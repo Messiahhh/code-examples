@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            body {
+                margin: 0;
+            }
+
+            .outer {
+                width: 400px;
+                height: 400px;
+                border: 10px solid red;
+                margin: 100px auto;
+                overflow: auto;
+                position: relative;
+            }
+
+            .blank {
+                width: 800px;
+                height: 800px;
+                background: pink;
+            }
+
+            .image {
+                height: 200px;
+                background: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="outer">
+            <div class="blank">
+
+            </div>
+            <div class="image">
+
+            </div>
+        </div>
+        <script type="text/javascript">
+            let outer = document.querySelector('.outer')
+            let blank = document.querySelector('.blank')
+            let image = document.querySelector('.image')
+
+            const A = () => {
+                // outer position: relative
+                // console.log(image.offsetTop - outer.scrollTop < outer.clientHeight)
+                // console.log(image.offsetTop - outer.scrollTop - outer.offsetTop - 10 < outer.clientHeight);
+                console.log(image.getBoundingClientRect().top < document.documentElement.clientHeight);
+            }
+
+            outer.onscroll = throttle(A, 200)
+
+            function throttle (fn, time) {
+                let canRun = true
+                return function () {
+                    if (!canRun) return false
+                    canRun = false
+                    setTimeout(() => {
+                        fn()
+                        canRun = true
+                    }, time)
+                }
+            }
+        </script>
+    </body>
+</html>

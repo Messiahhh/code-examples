@@ -1,8 +1,6 @@
-function Animal(name) {
+function Animal(name, size) {
     this.name = name
-    this.sleep = function () {
-        console.log(this.name + "正在睡觉")
-    }
+    this.size = size
 }
 
 Animal.prototype.eat = function (food) {
@@ -61,7 +59,7 @@ class Cat extends Animal {
         super(name)
         this.color = color
     }
-    
+
     sleep() {
         console.log(this.name + "正在睡觉")
     }

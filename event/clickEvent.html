@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            .outer {
+                height: 400px;
+                background: pink;
+            }
+
+            .inner {
+                height: 200px;
+                background: #aaa;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="outer">
+            <div class="inner">
+
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            let outer = document.querySelector('.outer')
+            outer.addEventListener('click', function (e) {
+                console.log(e.target);
+            })
+            // let inner = document.querySelector('.inner')
+            // inner.addEventListener('click', function (e) {
+            //     console.log(e.target);
+            // })
+        </script>
+    </body>
+</html>

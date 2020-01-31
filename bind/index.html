@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            let a = {
+                age: 10,
+                getAge: function (a, b) {
+                    console.log(this.age + a + b)
+                }
+            }
+
+            let b = {
+                age: 20,
+            }
+
+            Function.prototype._bind = function (context, ...args) {
+                return (...newArgs) => {
+                    this.call(context, ...args, ...newArgs)
+                }
+            }
+        </script>
+    </body>
+</html>

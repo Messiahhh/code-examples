@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            class Node {
+                constructor(data) {
+                    this.next = null
+                    this.data = data
+                }
+            }
+
+            class List {
+                constructor() {
+                    this.head = null
+                    this.length = 0
+                }
+
+                append(data) {
+                    let node = new Node(data)
+                    if (this.head) {
+                        let current = this.head
+                        while(current.next !== null) {
+                            current = current.next
+                        }
+                        current.next = node
+                    }
+                    else {
+                        this.head = node
+                    }
+                    this.length++
+                }
+
+                insert(data, position) {
+                    let node = new Node(data)
+                    if (position >= 0 && position <= this.length) {
+                        let currentNode = this.head
+                        let previousNode = null
+                        let index = 0
+                        if ( position === 0 ) {
+                            node.next = this.head
+                            this.head = node
+                        }
+                        else {
+                            while( index++ < position ) {
+                                previousNode = currentNode
+                                currentNode = currentNode.next
+                            }
+                            previousNode.next = node
+                            node.next = currentNode
+                        }
+                        this.length++
+                    }
+                }
+
+                size() {
+                    return this.length
+                }
+
+                isEmpty() {
+                    return this.length === 0
+                }
+            }
+
+            let list = new List()
+            list.append(111)
+            list.append(222)
+            list.append(333)
+
+            function reverseList(list) {
+                let head = list.head
+                let currentNode = head
+                let pre
+                while (currentNode) {
+                    let nextNode = currentNode.next
+                    currentNode.next = pre
+                     pre = currentNode
+                     currentNode = nextNode
+                }
+                return pre
+            }
+
+        </script>
+    </body>
+</html>

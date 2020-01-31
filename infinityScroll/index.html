@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            body {
+                margin: 0;
+            }
+            .comment {
+                box-sizing: border-box;
+                height: 20vh;
+                border: 2px solid red;
+            }
+            .footer {
+                height: 20vh;
+                background: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="comment">
+            111
+        </div>
+        <div class="comment">
+            222
+        </div>
+        <div class="comment">
+            333
+        </div>
+        <div class="comment">
+            444
+        </div>
+        <div class="comment">
+            555
+        </div>
+        <div class="comment">
+            666
+        </div>
+        <div class="footer">
+
+        </div>
+
+        <script type="text/javascript">
+            let io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return
+                    loadComment()
+                })
+            })
+
+            io.observe(document.querySelector('.footer'))
+
+            const loadComment = () => {
+
+            }
+        </script>
+    </body>
+</html>

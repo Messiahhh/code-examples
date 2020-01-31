@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            class Publisher {
+                constructor() {
+                    this.list = []
+                }
+
+                addListener(listener) {
+                    this.list.push(listener)
+                }
+
+                removeListener(listener) {
+                    this.list.forEach((item, index) => {
+                        if (listener === item) {
+                            this.list.splice(index, 1)
+                        }
+                    })
+                }
+
+                notify(obj) {
+                    this.list.forEach((item) => {
+                        item.process(obj)
+                    })
+                }
+            }
+
+            class Subscriber {
+                process(obj) {
+                    console.log(obj.name)
+                }
+            }
+
+
+        </script>
+    </body>
+</html>

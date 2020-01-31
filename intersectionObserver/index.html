@@ -32,16 +32,18 @@
         </div>
         <script type="text/javascript">
             let io = new IntersectionObserver((entries) => {
-                entries.forEach((item) => {
-                    if (!item.isIntersecting) return
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return
                     else {
-                        let el = item.target
+                        let el = entry.target
                         el.style.backgroundImage = `url(${el.dataset.url})`
                         io.unobserve(el)
                     }
+
                 })
             })
-            io.observe(document.querySelector('.b'))
+            io.observe(document.querySelector(".b"))
+
         </script>
     </body>
 </html>

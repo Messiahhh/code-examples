@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            class Node {
+                constructor(data, left, right) {
+                    Object.assign(this, {
+                        data,
+                        left,
+                        right
+                    })
+                }
+            }
+
+            class BST {
+                constructor() {
+                    this.root = null
+                }
+
+                insert(data) {
+                    let node = new Node(data)
+                    if (!this.root) {
+                        this.root = node
+                    }
+                    else {
+                        let current = this.root
+                        while (true) {
+                            if (data < current.data) {
+                                if (current.left) {
+                                    current = current.left
+                                }
+                                else {
+                                    current.left = node
+                                    break
+                                }
+                            }
+                            else {
+                                if (current.right) {
+                                    current = current.right
+                                }
+                                else {
+                                    current.right = node
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+
+            // 先序遍历，中序遍历，后序遍历的递归写法
+            function preOrder (node, cb) {
+                if (node) {
+                    cb(node.data)
+                    preOrder(node.left, cb)
+                    preOrder(node.right, cb)
+                }
+            }
+
+            function inOrder (node, cb) {
+                if (node) {
+                    inOrder(node.left, cb)
+                    cb(node.data)
+                    inOrder(node.right, cb)
+                }
+            }
+
+            function postOrder (node, cb) {
+                if (node) {
+                    postOrder(node.left, cb)
+                    postOrder(node.right, cb)
+                    cb(node.data)
+                }
+            }
+
+            // 先序遍历，中序遍历，后序遍历的非递归写法
+
+            function preOrder(node) {
+                let stack = [], res = []
+                stack.push(node)
+                while (stack.length > 0) {
+                    let node = stack.pop()
+                    res.push(node.data)
+                    if (node.right) {
+                        stack.push(node.right)
+                    }
+                    if (node.left) {
+                        stack.push(node.left)
+                    }
+                }
+                return res
+            }
+
+            function inOrder(node) {
+                let stack = [], res = []
+                while (stack.length > 0 || node) {
+                    if (node) {
+                        stack.push(node)
+                        node = node.left
+                    } else {
+                        node = stack.pop()
+                        res.push(node.data)
+                        node = node.right
+                    }
+                }
+                return res
+            }
+
+
+            function postOrder(node, cb) {
+                let stack = []
+                let res = []
+                while (stack.length > 0 || node) {
+                    res.unshift(node.data)
+                    if (node.right) {
+                        stack.push(node.right)
+                    }
+                    if (node.left) {
+                        stack.push(node.left)
+                    }
+                    node = stack.pop()
+                }
+                return res
+            }
+
+            // 或者
+            function postOrder(node) {
+                let stack = [], res = []
+                stack.push(node)
+                while (stack.length > 0) {
+                    let node = stack.pop()
+                    res.push(node.data)
+                    if (node.right) {
+                        stack.push(node.right)
+                    }
+                    if (node.left) {
+                        stack.push(node.left)
+                    }
+                }
+                return res.reverse()
+            }
+
+
+
+
+            let tree = new BST()
+
+            tree.insert(10)
+            tree.insert(20)
+            tree.insert(15)
+            tree.insert(12)
+            tree.insert(5)
+            let res = preOrder(tree.root)
+            console.log(...res)
+        </script>
+    </body>
+</html>

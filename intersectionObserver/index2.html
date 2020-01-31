@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            body {
+                margin: 0;
+            }
+            .blank {
+                height: 2000px;
+            }
+
+            .image {
+                height: 1000px;
+                background-size: cover;
+                background: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="blank">
+
+        </div>
+        <div class="image" data-url="C:/Users/Messiah/Pictures/darling/image.png">
+
+        </div>
+        <script type="text/javascript">
+            let image = document.querySelector('.image')
+
+            window.onscroll = throttle(() => {
+                if (image.getBoundingClientRect().top < document.documentElement.clientHeight) {
+                    let url = image.dataset.url
+                    image.style.backgroundImage = `url(${url})`
+                }
+
+
+                // if (image.offsetTop - document.documentElement.scrollTop < document.documentElement.clientHeight) {
+                //     let url = image.dataset.url
+                //     image.style.backgroundImage = `url(${url})`
+                // }
+            }, 500)
+
+            function throttle (fn, time) {
+                let canRun = true
+                return function () {
+                    if (!canRun) return false
+                    canRun = false
+                    setTimeout(() => {
+                        fn()
+                        canRun = true
+                    }, time)
+                }
+            }
+
+        </script>
+    </body>
+</html>

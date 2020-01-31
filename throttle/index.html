@@ -6,22 +6,21 @@
     </head>
     <body>
         <script type="text/javascript">
-        function throttle (fn, time) {
+        function throttle (fn, time = 500) {
             var canRun = true;
             return function () {
                 if (!canRun) return false;
                 canRun = false;
-                var that = this, args = arguments;
-                setTimeout(function () {
-                    fn.apply(that, args);
-                    canRun = true;
-                }, time || 500);
+                setTimeout(() => {
+                    fn.call(this)
+                    canRun = true
+                }, time)
             }
         }
 
         setInterval(throttle(function() {
             console.log("hello world")
-        }), 100)
+        }, 1000), 100)
         </script>
     </body>
 </html>
